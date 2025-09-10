@@ -165,7 +165,38 @@ Apllicant-Tracking-System-/
 │── .gitignore
 │── README.md
 ```
+⚙️ Tech Stack
 
+- Python 3.11  
+- Flask  
+- SpaCy (NLP)  
+- MySQL  
+- HTML/CSS/Bootstrap (Frontend)  
+
+
+🎯 Use Cases
+
+HR teams can manage resumes.
+
+Auto-screening candidates.
+
+Resume storage & retrieval.
+
+📊 Workflow / How It Works
+Step 1 → Upload Resume
+Step 2 → Resume parsed with SpaCy
+Step 3 → Data stored in MySQL
+Step 4 → Admin reviews candidates
+
+(You can also add a flowchart image here.)
+
+🚀 Future Enhancements (shows you’re thinking ahead)
+
+AI-powered candidate ranking.
+
+Email notification system.
+
+Job posting integration.
 ---
 
 ## 👨‍💻 Author
@@ -174,4 +205,14 @@ Apllicant-Tracking-System-/
 🔗 [GitHub](https://github.com/suryanattzz)
 
 ---
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](screenshots/home.png)
+
+### 📂 Resume Upload
+![Upload Resume](screenshots/results.png)
+
+
+
 
