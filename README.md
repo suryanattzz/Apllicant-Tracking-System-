@@ -1,56 +1,63 @@
-**Applicant Tracking System** 
 
+# 📌 Applicant Tracking System (ATS)
 
-````markdown
-# Applicant Tracking System
-
-A Python-based Applicant Tracking System (ATS) that automates resume parsing and candidate shortlisting. Utilizes NLP via spaCy, SQL database storage, and advanced resume matching.
+A Smart **Applicant Tracking System** (ATS) built using **Python, Flask, SpaCy, and MySQL**.
+It helps HRs & recruiters analyze resumes, extract key details, and shortlist candidates efficiently.
 
 ---
 
-##  Features
+## ⚡ Features
 
-- Parse and extract information from resumes (`resume_processing.py`)
-- Match job descriptions to resumes (`jd_matcher.py`)
-- SQL-backed storage of candidate and course data (`db.py`, `Courses.py`)
-- Web interface via `app.py` (Flask-based likely)
-- Support for file uploads (`uploads/`), templates (`templates/`), and static assets (`static/`)
-
----
-
-##  Prerequisites
-
-- Python **3.11**
-- Dependencies listed in `requirements.txt`
-- SQLite (or any supported SQL DB) for storage
-- Optional: spaCy model (e.g., `en_core_web_sm`)
+* 📝 Resume Upload & Parsing
+* 📊 NLP-powered Text Extraction (using SpaCy)
+* 🗄️ MySQL Database Integration
+* 🔐 Admin Login for ATS Dashboard
+* 📂 Organized Resume Storage
+* 🔒 Secure Config using `.env`
 
 ---
 
-##  Setup Instructions
+## 🛠️ Requirements
+
+* Python **3.11**
+* MySQL (running locally or on a server)
+* Virtual Environment (`venv`)
+* pip (Python package manager)
+
+---
+
+## 🚀 Setup Instructions
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/suryanattzz/Apllicant-Tracking-System-.git
 cd Apllicant-Tracking-System-
-````
-
-### 2. Create and Activate Virtual Environment
-
-```bash
-python -m venv environment3.11
 ```
 
-* **Windows**:
+---
 
-  ```bash
-  environment3.11\Scripts\activate
-  ```
-* **macOS/Linux**:
+### 2. Create a Virtual Environment
 
-  ```bash
-  source environment3.11/bin/activate
-  ```
+```bash
+python -m venv yourenv
+```
+
+Activate it:
+
+* **Windows (CMD/PowerShell):**
+
+```bash
+yourenv\Scripts\activate
+```
+
+* **Linux/Mac:**
+
+```bash
+source yourenv/bin/activate
+```
+
+---
 
 ### 3. Install Dependencies
 
@@ -58,104 +65,113 @@ python -m venv environment3.11
 pip install -r requirements.txt
 ```
 
-**Optional**: If spaCy model is not included, install it:
+If not available, install key packages manually:
+
+```bash
+pip install spacy python-dotenv
+```
 
 ```bash
 python -m spacy download en_core_web_sm
 ```
 
+---
+
 ### 4. Configure Environment Variables
 
-* Copy `.env.example` to `.env`:
+Create a `.env` file in the project root:
 
-  ```bash
-  copy .env.example .env      # Windows
-  cp .env.example .env        # macOS/Linux
-  ```
-* Fill in your custom values (e.g., database credentials).
+```ini
+# Database Configuration
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=root
+DB_NAME=cv
 
-### 5. Initialize the Database (if needed)
+# Flask Secret Key
+FLASK_SECRET=F!9j@83klp$1qZ_az7Nv2Xy&3L0bH^
 
-If there's a database setup script or instructions in `db.py`, run it:
+# File Uploads
+UPLOAD_FOLDER=Uploaded_Resumes
 
-```bash
-python db.py
+# Admin Login
+ADMIN_USER=admin
+ADMIN_PASS=admin@ats
 ```
 
-Alternatively, manually ensure your SQL database is created and configured per the codebase.
 
 ---
 
-## Running the Application
+### 5. Set Up MySQL Database
+
+Log in to MySQL:
+
+```bash
+mysql -u root -p
+```
+
+Create the database:
+
+```sql
+CREATE DATABASE cv;
+```
+
+(If you have a `db.sql` file in the repo, import it)
+
+```bash
+mysql -u root -p cv < db.sql
+```
+
+---
+
+### 6. Run the Application
 
 ```bash
 python app.py
 ```
 
-* Open your browser and navigate to `http://localhost:5000` (or specified port).
-* Interface supports resume uploads and applicant-job matching.
+The app will be available at:
+👉 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ---
 
-## Project Structure
+### 7. Deactivate Environment (when done)
 
-```
-├── app.py
-├── db.py
-├── jd_matcher.py
-├── resume_processing.py
-├── Courses.py
-├── requirements.txt
-├── .env.example
-├── templates/
-├── static/
-└── uploads/
-```
-
-* `app.py`: Starts the web application (Flask)
-* `db.py`: Handles database operations
-* `jd_matcher.py`: Matches job descriptions to resumes
-* `resume_processing.py`: Parses resumes
-* `Courses.py`: Manages courses or tags in DB
-
----
-
-## Common Commands
-
-| Action                | Command                                               |
-| --------------------- | ----------------------------------------------------- |
-| Activate virtualenv   | `source environment3.11/bin/activate`                 |
-| Deactivate virtualenv | `deactivate`                                          |
-| Add a new dependency  | `pip install <package>` and update `requirements.txt` |
-| Commit changes        | `git add . && git commit -m "message"`                |
-
----
-
-## Screenshots / Visuals
-
-*(Include screenshots or UI images here if available)*
-
----
-
-## License & Contributing
-
-* **License**: *Specify license if available.*
-* **Contributing**: Fork the repo, work on a branch, and submit a Pull Request.
-
----
-
-## Contact
-
-Created and maintained by \[Your Name].
-Questions or feedback? \[Your email or profile link].
-
+```bash
+deactivate
 ```
 
 ---
 
-###  Next Steps
-- Review and tweak filenames or commands to fit your actual project.
-- Add sections for deployment, testing, or API docs if needed.
-- Feel free to ask if you'd like this made into a PDF or enhanced with visuals!
-::contentReference[oaicite:0]{index=0}
+## 🔐 Security Notes
+
+* Change `FLASK_SECRET`, `DB_PASS`, and `ADMIN_PASS` before deployment.
+* Use **GitHub Secrets** or **Docker ENV variables** in production.
+
+---
+
+## 📌 Folder Structure (Example)
+
 ```
+Apllicant-Tracking-System-/
+│── app.py
+│── config.py
+│── db.py
+│── requirements.txt
+│── Uploaded_Resumes/
+│── templates/
+│── static/
+│── .env   (ignored)
+│── .gitignore
+│── README.md
+```
+
+---
+
+## 👨‍💻 Author
+
+**Surya Nattss**
+🔗 [GitHub](https://github.com/suryanattzz)
+
+---
+
