@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Job Description – Resume Matching Results</h2>
+
+{% if candidates %}
+  <div class="card table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Resume File</th>
+          <th>Match %</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for filename, similarity in candidates %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ filename }}</td>
+          <td>{{ '%.2f' | format(similarity * 100) }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p>No candidates were uploaded.</p>
+{% endif %}
+
+<div class="card" style="margin-top:20px;">
+  <h3>Resources to Improve Resume Match</h3>
+  <ul>
+    <li><a href="https://www.youtube.com/watch?v=1sN8gRx4rro" target="_blank">How to Tailor Resume to Job Description</a></li>
+    <li><a href="https://www.youtube.com/watch?v=Q0b6WBioDYo" target="_blank">Top Resume Tips (ATS Friendly)</a></li>
+    <li><a href="https://www.coursera.org/courses?query=resume%20building" target="_blank">Resume Building Courses</a></li>
+  </ul>
+</div>
+
+{% endblock %}

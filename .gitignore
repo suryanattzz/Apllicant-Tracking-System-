@@ -1,0 +1,9 @@
+environment3.11/
+
+
+run_command.txt
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Job Description – Resume Matching</h2>
+<form action="{{ url_for('jd_match.jd_results') }}" method="POST" enctype="multipart/form-data">
+
+  <label>Job Description</label>
+  <textarea name="job_description" rows="6" style="width:100%;"></textarea>
+
+  <label>Upload Resumes (PDF)</label>
+  <input type="file" name="resumes" multiple accept=".pdf">
+
+  <button type="submit">Match Candidates</button>
+</form>
+{% endblock %}

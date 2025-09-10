@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Resume Analysis</h2>
+
+<div class="card">
+  <!-- Basic Info -->
+  <h3>Your Basic Info</h3>
+  <ul>
+    <li><strong>Name:</strong> {{ parsed.name }}</li>
+    <li><strong>Email:</strong> {{ parsed.email }}</li>
+    <li><strong>Contact:</strong> {{ parsed.mobile_number }}</li>
+    <li><strong>Degree:</strong> {{ parsed.degree }}</li>
+    <li><strong>Resume pages:</strong> {{ parsed.no_of_pages }}</li>
+  </ul>
+
+  <!-- Experience Level -->
+  <h3>Experience Level</h3>
+  <p>{{ level_msg }}</p>
+
+  <!-- Skills -->
+  <h3>Skills (detected)</h3>
+  <div class="chips">
+    {% for s in parsed.skills or [] %}
+      <span class="chip">{{ s }}</span>
+    {% endfor %}
+  </div>
+
+  <h3>Recommended Skills</h3>
+  {% if reco.skills %}
+    <div class="chips">
+      {% for s in reco.skills %}
+        <span class="chip">{{ s }}</span>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No recommendations for this field yet.</p>
+  {% endif %}
+
+  <!-- Courses -->
+  <h3>Courses & Certificates</h3>
+  {% if reco.courses %}
+    <ol>
+    {% for title, link in reco.courses %}
+      <li><a href="{{ link }}" target="_blank" rel="noopener">{{ title }}</a></li>
+    {% endfor %}
+    </ol>
+  {% else %}
+    <p>—</p>
+  {% endif %}
+
+  <!-- Score -->
+  <h3>⭐ Resume Score</h3>
+  <div class="score">{{ score }}</div>
+  <div style="background:#0f172a;border-radius:8px;overflow:hidden;height:16px;margin:8px 0;">
+    <div style="background:var(--accent);height:100%;width:{{ score }}%;"></div>
+  </div>
+  <p><em>Note: Based on detected sections in your resume.</em></p>
+
+  <!-- Checklist -->
+  <h4>📋 Section Coverage</h4>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Status</th>
+        <th>Points</th>
+      </tr>
+      {% for row in progress %}
+      <tr>
+        <td>{{ row.label }}</td>
+        <td>
+          {% if row.ok %}
+            ✅ Present
+          {% else %}
+            ❌ Missing
+          {% endif %}
+        </td>
+        <td>{{ row.points }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <!-- Tips -->
+  {% if tips %}
+    <h4>🔧 Tips to Improve</h4>
+    <ul>
+      {% for t in tips %}
+        <li>{{ t }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<!-- PDF Preview placed below -->
+<div class="card" style="margin-top:20px;">
+  <h3>📄 Resume Preview</h3>
+  {{ pdf_iframe|safe }}
+</div>
+
+{% endblock %}
